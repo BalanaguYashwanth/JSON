@@ -1,0 +1,44 @@
+<html>
+<head>
+
+    <script  type="text/javascript">
+    debugger;
+    function change()
+    {
+        
+    var xmlHttp=new XMLHttpRequest();
+   
+    xmlHttp.onreadystatechange=function()
+    {  
+        if(xmlHttp.readyState==4 && xmlHttp.status==200)
+        {
+            text= JSON.parse(xmlHttp.responseText);
+            text.u1.user="hai";
+            document.getElementById("results").innerHTML = "";
+            for( var obj in text )
+            {
+                document.getElementById("results").innerHTML += "user:"+text[obj].user+"<hr />";
+            }
+
+
+        }
+    }
+   
+    xmlHttp.open("GET","file.json",true);
+
+    xmlHttp.setRequestHeader("content-type","application/json",true );
+   
+    
+    xmlHttp.send(null);
+    document.getElementById("results").innerHTML = "processing....";
+    }
+    </script>
+
+</head>
+
+<body>
+<div id="results"> </div>
+<button onclick="change()">submit </button>
+</body>
+
+</html>
